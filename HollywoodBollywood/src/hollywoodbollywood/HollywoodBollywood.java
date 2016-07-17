@@ -5,14 +5,15 @@ import java.util.Scanner;
 class timer extends Thread{
     static int cl;
     public void run(){
-         for(cl=30;cl>=0;cl--){       
-             try{
-                  Thread.sleep(1000);
-             }catch(InterruptedException e){System.out.println(e);}
-             System.out.println(cl);
-            }
-        }
-    }
+         for(cl=30;cl>=0;cl--){   
+                try{  
+                    System.out.println("\n\n\n\n\n\n\n\n\n");                   
+                    Thread.sleep(1000);
+                }catch(InterruptedException e){System.out.println(e);}        
+                System.out.print(cl);
+         }
+      }
+   }
 
 class questionCheck{
         void run(){
@@ -38,16 +39,21 @@ class typeAns extends Thread{
         for(int i=1;i<=5;i++){
             System.out.println("enter your guess letter");
             guess[0]=sc.next().charAt(0);
-            //System.out.println(ans[h.quesNumber].length());
+            System.out.println(ans[h.quesNumber]);
             for(int j=0;j<ans[h.quesNumber].length();j++){
                 if(guess[0]==ans[h.quesNumber].charAt(j)){
-                    h.que[h.quesNumber]=ans[h.quesNumber].substring(j,j);
+                    h.que[h.quesNumber].charAt(j)=ans[h.quesNumber].charAt(j);//my doubt is why it is not copying but making it blank
                     System.out.println(h.que[h.quesNumber]);
                 }
             }
         }
         q.run();
     }
+}
+
+class printQues extends Thread{
+    HollywoodBollywood h=new HollywoodBollywood();
+    
 }
 
 public class HollywoodBollywood {
@@ -60,13 +66,13 @@ public class HollywoodBollywood {
     }
     void ask()
     {
-        System.out.println(que[quesNumber]);
+        System.out.println("                            "+que[quesNumber]);
     }
     public static void main(String[] args) {
         HollywoodBollywood h=new HollywoodBollywood();
         h.ask();
         timer t=new timer();
-        //t.start();                 //run clock
+       // t.start();                 //run clock
         typeAns ty=new typeAns();
         ty.start();                   //get guesses  
        
